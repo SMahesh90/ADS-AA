@@ -1,11 +1,15 @@
+import java.util.Scanner;
+
 public class NQueens {
     private int[] board;
     private int count = 0;
+
     public void solve(int n) {
         board = new int[n];
         placeQueens(0, n);
         System.out.println("Total solutions: " + count);
     }
+
     private void placeQueens(int row, int n) {
         if (row == n) {
             count++;
@@ -18,6 +22,7 @@ public class NQueens {
             }
         }
     }
+
     private boolean isSafe(int row, int col) {
         for (int i = 0; i < row; i++) {
             if (board[i] == col || Math.abs(board[i] - col) == Math.abs(i - row)) {
@@ -26,8 +31,14 @@ public class NQueens {
         }
         return true;
     }
+
     public static void main(String[] args) {
-    NQueens nQueensSolver = new NQueens();
-    nQueensSolver.solve(8);
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of queens: ");
+        int n = scanner.nextInt(); 
+        NQueens nQueensSolver = new NQueens();
+        nQueensSolver.solve(n); 
+
+        scanner.close(); 
     }
 }
